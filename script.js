@@ -1,5 +1,6 @@
 let firstCard = Math.floor(Math.random() * 11) + 1;
 let secondCard = Math.floor(Math.random() * 11) + 1;
+let cards = [firstCard, secondCard]
 let sum = firstCard + secondCard
 let hasBlackJack = false
 let isAlive = true
@@ -17,9 +18,14 @@ if (sum < 21) {
 let messageEl = document.getElementById("message-el")
 let sumEl = document.querySelector("#sum-el")
 let cardsEl = document.querySelector("#cards-el")
+
 function startGame() {
+    renderGame()
+}
+
+function renderGame() {
     sumEl.textContent = "Sum: " + sum
-    cardsEl.textContent = "Cards: " + firstCard + " / " + secondCard
+    cardsEl.textContent = "Cards: " + cards[0] + " / " + cards[1]
     if (sum <= 20) {
         message = "Hit?"
     }else if (sum === 21){
@@ -29,15 +35,18 @@ function startGame() {
         message = "Bust, House wins..."
         isAlive = false
     }
-
-    function hit() {
-console.log("Dealing A Fresh One")
-    }
-
-    
-    messageEl.textContent = message
+     messageEl.textContent = message
     console.log(message)
 }
+
+function newCard() {
+    console.log("Dealing A Fresh One")
+       let card = Math.floor(Math.random() * 11) + 1; 
+       sum += card
+       startGame()
+    
+    }
+
 
 console.log("First card:", firstCard);
     console.log("Second card:", secondCard);
@@ -45,3 +54,4 @@ console.log("First card:", firstCard);
     console.log(message);
 
 
+    
